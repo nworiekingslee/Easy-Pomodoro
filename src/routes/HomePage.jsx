@@ -52,7 +52,6 @@ function HomePage({ projects, tasks, handleCreateTask, handleCreateProject }) {
                   projectId={props.match.params.projectId}
                   taskId={props.match.params.taskId}
                   history={props.history}
-                  projects={projects}
                   tasks={tasks}
                   {...props}
                 />
