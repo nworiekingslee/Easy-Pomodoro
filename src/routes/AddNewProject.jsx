@@ -1,22 +1,28 @@
 import { useState } from "react";
 
-const AddNewTask = (props) => {
-  const projectId = [];
-  projectId.push(props.projectId);
-  console.log(projectId);
-
-  const [newTask, setNewTask] = useState("");
+const AddNewProject = (props) => {
+  console.log("props", props);
+  const [newProject, setNewProject] = useState("");
 
   const handleChange = ({ target }) => {
     // console.log(newTask);
-    setNewTask(target.value);
+    setNewProject(target.value);
   };
 
-  const handleCreateTask = () => {
+  const handleCreateProject = () => {
+    var today = new Date();
+
+    var dateNow =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+
     props.history.goBack();
-    props.handleCreateTask({
-      task: newTask,
-      projectId: projectId,
+    props.handleCreateProject({
+      projectTitle: newProject,
+      date: dateNow,
     });
   };
 
@@ -28,7 +34,7 @@ const AddNewTask = (props) => {
       ></div>
       <div className="bg-white px-4 md:px-6 py-6 mb-4 w-full mx-8 md:w-auto rounded-lg border border-grey-100 z-10">
         <p className="text-xl md:text-lg font-semibold mb-4 ">
-          Create a new task
+          Create a new Project
         </p>
         <div className="mb-4">
           <input
@@ -44,9 +50,9 @@ const AddNewTask = (props) => {
           <button
             className="bg-brand opacity-90 hover:opacity-100 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() => handleCreateTask()}
+            onClick={() => handleCreateProject()}
           >
-            Add task
+            Add Project
           </button>
         </div>
       </div>
@@ -54,4 +60,4 @@ const AddNewTask = (props) => {
   );
 };
 
-export default AddNewTask;
+export default AddNewProject;

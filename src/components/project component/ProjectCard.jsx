@@ -19,7 +19,7 @@ function ProjectCard({ tasks, item }) {
       {/* Render a different card for when the project is completed for a different hover effect */}
       {checkPercentage() === 100 ? (
         <Link to={`/${item.id}`}>
-          <div className="project-done bg-white border border-white border-grey-100 hover:border-done-outline hover:shadow hover:shadow-done-outline w-fill p-4 rounded-lg cursor-pointer">
+          <div className="project-done bg-white border  border-grey-100 hover:border-done-outline hover:shadow hover:shadow-done-outline w-fill p-4 rounded-lg cursor-pointer">
             <p className="project-title text-xl md:text-lg font-semibold hover:text-done ">
               {item.fields.projectTitle}
             </p>
@@ -59,7 +59,7 @@ function ProjectCard({ tasks, item }) {
       ) : (
         <Link to={`/${item.id}`}>
           {/* Render a different card for when the project is completed for a different hover effect */}
-          <div className="project-ongoing bg-white border border-white border-grey-100 hover:border-outline hover:shadow hover:shadow-outline w-fill p-4 rounded-lg cursor-pointer">
+          <div className="project-ongoing bg-white border  border-grey-100 hover:border-outline hover:shadow hover:shadow-outline w-fill p-4 rounded-lg cursor-pointer">
             <p className="project-title text-xl md:text-lg font-semibold hover:text-brand ">
               {item.fields.projectTitle}
             </p>

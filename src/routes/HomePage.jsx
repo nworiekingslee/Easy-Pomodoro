@@ -6,8 +6,9 @@ import { Route, Switch } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
 import Clock from "./Clock";
 import AddNewTask from "./AddNewTask";
+import AddNewProject from "./AddNewProject";
 
-function HomePage({ projects, tasks, handleCreateTask }) {
+function HomePage({ projects, tasks, handleCreateTask, handleCreateProject }) {
   return (
     <>
       {!projects.length ? (
@@ -18,11 +19,11 @@ function HomePage({ projects, tasks, handleCreateTask }) {
           <Navbar />
 
           <Switch>
-            {/* <Route
+            <Route
               exact
               path="/new-project"
               render={(props) => (
-                <AddProject
+                <AddNewProject
                   handleCreateProject={handleCreateProject}
                   history={props.history}
                   projects={projects}
@@ -30,7 +31,7 @@ function HomePage({ projects, tasks, handleCreateTask }) {
                   {...props}
                 />
               )}
-            /> */}
+            />
             <Route
               path="/:projectId/new-task"
               render={(props) => (
