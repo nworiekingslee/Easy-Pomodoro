@@ -1,5 +1,6 @@
 import AddTaskComponent from "../components/project component/AddTaskComponent";
 import Task from "../components/project component/Task";
+import { Link } from "react-router-dom";
 
 function ProjectPage({ history, projectId, projects, tasks }) {
   const thisProject = projects.filter((project) => project.id === projectId);
@@ -12,20 +13,22 @@ function ProjectPage({ history, projectId, projects, tasks }) {
       <div className="fixed h-full w-full container max-w-xl md:max-w-2xl bg-background"></div>
       <header className="sticky top-0 z-20">
         <nav className="bg-background p-4 flex items-center ">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="cursor-pointer"
-            onClick={() => history.goBack()}
-          >
-            <path
-              d="M15.535 3.51501L7.04999 12L15.535 20.485L16.95 19.071L9.87799 12L16.95 4.92901L15.535 3.51501Z"
-              className="fill-slate-600"
-            />
-          </svg>
+          <Link to={"/"}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="cursor-pointer"
+              onClick={() => history.goBack()}
+            >
+              <path
+                d="M15.535 3.51501L7.04999 12L15.535 20.485L16.95 19.071L9.87799 12L16.95 4.92901L15.535 3.51501Z"
+                className="fill-slate-600"
+              />
+            </svg>
+          </Link>
         </nav>
 
         <div className=" px-4 flex justify-center items-center h-48 bg-background z-40">
