@@ -46,7 +46,7 @@ function ProjectPage({ history, projectId, projects, tasks }) {
       ))}
       <AddTaskComponent projectId={thisProject[0].id} />
       // Scroll space
-      <div className="h-48 bg-done w-100">hi</div>
+      <div className="h-48 w-100">hi</div>
     </div>
   );
 }

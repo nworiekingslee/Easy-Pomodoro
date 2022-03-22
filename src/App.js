@@ -13,40 +13,36 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
 
-  // const createProject = async (newProject) => {
-  //   var today = new Date();
+  const createProject = async (newProject) => {
+    const createdProject = await base("projects").create({...newProject});
 
-  //   var dateNow =
-  //     today.getFullYear() +
-  //     "-" +
-  //     (today.getMonth() + 1) +
-  //     "-" +
-  //     today.getDate();
-
-  //   const createdProject = await base("projects").create({
-  //     ...newProject,
-  //     date: dateNow,
-  //   });
-  //   // console.log(createdProject.id);
-  //   console.log([...projects, createdProject]);
-  //   setProjects([...projects, createdProject]);
-  //   return createdProject.id;
-  // };
+    base("projects")
+    .select({ view: "Grid view" })
+    .eachPage((records, fetchNextPage) => {
+      setProjects(records);
+      console.log("projects", records);
+      fetchNextPage();
+    },  function done(err) {
+      if (err) { console.error(err); return; }
+  });
+    console.log(newProject);
+  };
 
   const createTask = async (newTask) => {
     const createdTask = await base("tasks").create(newTask);
     setTasks([...tasks, createdTask]);
-    console.log(newTask);
   };
 
   useEffect(async () => {
-    await base("projects")
+    base("projects")
       .select({ view: "Grid view" })
       .eachPage((records, fetchNextPage) => {
         setProjects(records);
-        // console.log("projects", records);
+        console.log("projects", records);
         fetchNextPage();
-      });
+      }, function done(err) {
+        if (err) { console.error(err); return; }
+    });
 
     await base("tasks")
       .select({ view: "Grid view" })
@@ -63,6 +59,7 @@ function App() {
           projects={projects}
           tasks={tasks}
           handleCreateTask={createTask}
+          handleCreateProject={createProject}
         />
       </div>
     </Router>
