@@ -4,13 +4,13 @@ const Clock = ({ taskId, projectId, history, tasks }) => {
   const thisTask = tasks.filter((task) => task.id === taskId);
   // console.log("history", history);
   const activeTime = {
-    minutes: "0",
-    seconds: "25",
+    minutes: "25",
+    seconds: "0",
     milliseconds: "100",
   };
   const passiveTime = {
-    minutes: "0",
-    seconds: "5",
+    minutes: "5",
+    seconds: "0",
     milliseconds: "100",
   };
 
