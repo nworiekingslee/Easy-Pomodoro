@@ -33,6 +33,20 @@ function App() {
     setTasks([...tasks, createdTask]);
   };
 
+  const updateTask = async (id, field) => {
+    const updatedTask = await base("tasks").update(id, field);
+    console.log( id,field)
+
+    base("tasks")
+      .select({ view: "Grid view" })
+      .eachPage((records, fetchNextPage) => {
+        setTasks(records);
+        // console.log("tasks", records);
+        fetchNextPage();
+      });
+ 
+  };
+
   useEffect(async () => {
     base("projects")
       .select({ view: "Grid view" })
@@ -58,6 +72,7 @@ function App() {
         <HomePage
           projects={projects}
           tasks={tasks}
+          handleUpdateTask={updateTask}
           handleCreateTask={createTask}
           handleCreateProject={createProject}
         />

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const Clock = ({ taskId, projectId, history, tasks }) => {
+const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
   const thisTask = tasks.filter((task) => task.id === taskId);
-  // console.log("history", history);
+  // console.log("props", props);
   const activeTime = {
     minutes: "25",
     seconds: "0",
@@ -23,7 +23,7 @@ const Clock = ({ taskId, projectId, history, tasks }) => {
   //  status 2 means paused
 
   useEffect(() => {
-    console.log("isActive-useEffect", isActive);
+    // console.log("isActive-useEffect", isActive);
     if (!isActive) {
       pause();
       setPomodoroTime(passiveTime);
@@ -77,7 +77,8 @@ const Clock = ({ taskId, projectId, history, tasks }) => {
     });
   };
   const taskComplete = () => {
-    thisTask[0].fields.isDone = true;
+    // thisTask[0].fields.isDone = true;
+    handleUpdateTask(taskId, { isDone: true });
     history.replace(`/${projectId}`);
   };
 
