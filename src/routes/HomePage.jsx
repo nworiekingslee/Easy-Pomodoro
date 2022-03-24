@@ -8,7 +8,13 @@ import Clock from "./Clock";
 import AddNewTask from "./AddNewTask";
 import AddNewProject from "./AddNewProject";
 
-function HomePage({ projects, tasks, handleCreateTask, handleCreateProject }) {
+function HomePage({
+  projects,
+  tasks,
+  handleCreateTask,
+  handleCreateProject,
+  handleUpdateTask,
+}) {
   return (
     <>
       {!projects.length ? (
@@ -37,6 +43,7 @@ function HomePage({ projects, tasks, handleCreateTask, handleCreateProject }) {
               render={(props) => (
                 <AddNewTask
                   handleCreateTask={handleCreateTask}
+                  handleUpdateTask={handleUpdateTask}
                   projectId={props.match.params.projectId}
                   history={props.history}
                   projects={projects}
@@ -49,6 +56,7 @@ function HomePage({ projects, tasks, handleCreateTask, handleCreateProject }) {
               path="/:projectId/:taskId"
               render={(props) => (
                 <Clock
+                  handleUpdateTask={handleUpdateTask}
                   projectId={props.match.params.projectId}
                   taskId={props.match.params.taskId}
                   history={props.history}
