@@ -53,7 +53,7 @@ const AddNewProject = (props) => {
           </h3>
 
           <input
-            className="appearance-none bg-background border-b-2 border-grey-100 focus:border-grey-200 w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
+            className="appearance-none bg-background border-b-2 border-grey-100 focus:border-grey-200 w-full py-3 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
             id="new-project"
             type="text"
             autoFocus

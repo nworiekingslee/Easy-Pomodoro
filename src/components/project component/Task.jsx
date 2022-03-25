@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 
 function Task({ task, projectId }) {
+  const contextmenu = () => {
+    console.log("Hello word");
+  };
   return (
     <>
       {task.fields.isDone ? (
-        <Link to={`/${projectId}/${task.id}`}>
+        <Link
+          to={`/${projectId}/${task.id}`}
+          onContextMenu={() => contextmenu()}
+        >
           <div className="p-4 w-100 bg-background mx-4 relative mb-2 rounded-lg border hover:shadow  border-grey-100 cursor-pointer">
             <p className="mr-8 text-grey-200 line-through">
               {task.fields.task}
