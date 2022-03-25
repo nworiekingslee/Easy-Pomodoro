@@ -84,7 +84,7 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
 
   return (
     <>
-      <div className="bg-background absolute top-0 h-screen w-full container max-w-xl md:max-w-2xl mx-auto">
+      <div className="bg-background absolute top-0 h-full w-full container max-w-xl md:max-w-2xl mx-auto flex flex-col justify-between pb-8 md:pb-12">
         <nav className="bg-background p-4 flex items-center ">
           <svg
             width="24"
@@ -103,7 +103,7 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
         </nav>
 
         {/* the Clock */}
-        <div className="flex flex-col items-center justify-center py-8 h-48">
+        <div className="flex flex-col items-center justify-center py-8 h-32">
           <p className="text-2xl font-light text-center px-8 z-40">
             {thisTask[0].fields.task}
           </p>{" "}
@@ -115,15 +115,15 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
           ) : (
             <div className="soft-glow rounded bg-done blur-3xl opacity-50 h-24 w-24 absolute top-0"></div>
           )}
-          <div className="mt-16 clock font-thin text-7xl sm:text-9xl flex items-center justify-center">
+          <div className="mt-16 clock font-thin text-8xl sm:text-9xl flex items-center justify-center">
             <span className="minute">{pomodoroTime.minutes}</span>:{" "}
             <span className="sec">{pomodoroTime.seconds}</span>
           </div>
         </div>
 
         {/* The message */}
-        <div className="flex w-full mt-8 bg-grey-100 p-4">
-          <p className="text-sm text-light mx-auto ">
+        <div className="flex w-full bg-grey-100 p-4 mt-4">
+          <p className="text-sm text-light mx-auto font-bold ">
             {isActive ? "Time to grind" : "Take a break"}
           </p>
         </div>
@@ -173,10 +173,10 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
         </div>
 
         {/* Begin button */}
-        <div className="flex flex-col  absolute bottom-24 w-full">
+        <div className="flex flex-col w-full">
           <button
             onClick={() => taskComplete()}
-            className="bg-done opacity-90 hover:opacity-100 text-white  py-2 px-6 rounded-full focus:outline-none focus:shadow-outline mx-auto"
+            className="bg-done opacity-90 hover:opacity-100 text-white  py-2 px-6 rounded-full focus:outline-none focus:shadow-outline mx-auto mt-8"
           >
             Mark task as complete
           </button>

@@ -25,7 +25,7 @@ function App() {
     },  function done(err) {
       if (err) { console.error(err); return; }
   });
-    console.log(newProject);
+    // console.log(newProject);
   };
 
   const createTask = async (newTask) => {
