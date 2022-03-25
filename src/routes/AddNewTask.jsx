@@ -3,7 +3,6 @@ import { useState } from "react";
 const AddNewTask = (props) => {
   const projectId = [];
   projectId.push(props.projectId);
-  console.log(projectId);
 
   const [newTask, setNewTask] = useState("");
 
@@ -22,7 +21,8 @@ const AddNewTask = (props) => {
 
   return (
     <div className=" flex justify-center items-center  ">
-       <nav className="bg-background p-4 flex items-center ">
+      <div className="fixed top-0 h-full w-full container max-w-xl md:max-w-2xl bg-background">
+        <nav className=" z-300 p-4 flex items-center ">
           <svg
             width="24"
             height="24"
@@ -38,31 +38,40 @@ const AddNewTask = (props) => {
             />
           </svg>
         </nav>
-      <div
-        className="fixed top-0 h-full w-full container max-w-xl md:max-w-2xl bg-background"
-        onClick={() => props.history.goBack()}
-      ></div>
-      <div className="bg-white px-4 md:px-6 py-6 mb-4 w-full mx-8 md:w-auto rounded-lg border border-grey-100 z-10">
-        <p className="text-xl md:text-lg font-semibold mb-4 ">
-          Create a new task
-        </p>
-        <div className="mb-4">
+
+        <div className="px-4 md:px-6 py-6">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="mb-4"
+          >
+            <path
+              d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C21.9939 17.5203 17.5203 21.9939 12 22ZM11.984 20H12C16.4167 19.9956 19.9942 16.4127 19.992 11.996C19.9898 7.57929 16.4087 4 11.992 4C7.57528 4 3.99421 7.57929 3.992 11.996C3.98979 16.4127 7.56729 19.9956 11.984 20ZM10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z"
+              className="fill-slate-700"
+            />
+          </svg>
+          <h3 className="text-xl md:text-2xl font-semibold mb-4 ">
+            Add a new task
+          </h3>
+
           <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none bg-background border-b-2 border-grey-200 w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
             id="new-project"
             type="text"
             autoFocus
             onChange={handleChange}
+            placeholder="type here"
           />
-        </div>
 
-        <div className="flex items-center justify-between ">
           <button
-            className="bg-brand opacity-90 hover:opacity-100 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+            className="mt-4 bg-brand opacity-90 hover:opacity-100 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
             type="button"
             onClick={() => handleCreateTask()}
           >
-            Add task
+            Add Task
           </button>
         </div>
       </div>
