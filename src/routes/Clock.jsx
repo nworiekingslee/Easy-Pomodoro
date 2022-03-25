@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
+import sound from "./../music/sound.wav";
 
 const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
   const thisTask = tasks.filter((task) => task.id === taskId);
+  var audio = new Audio(sound);
   // console.log("props", props);
   const activeTime = {
     minutes: "25",
-    seconds: "0",
+    seconds: "00",
     milliseconds: "100",
   };
   const passiveTime = {
-    minutes: "5",
-    seconds: "0",
+    minutes: "05",
+    seconds: "00",
     milliseconds: "100",
   };
 
@@ -55,6 +57,7 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
     }
 
     if (updatedM === -1) {
+      audio.play();
       setActive((isActive) => !isActive);
       return setPomodoroTime({
         minutes: 0,
@@ -76,15 +79,21 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
       milliseconds: updatedMs,
     });
   };
-  const taskComplete = () => {
+
+  const onTaskCheck = () => {
     // thisTask[0].fields.isDone = true;
     handleUpdateTask(taskId, { isDone: true });
+    history.replace(`/${projectId}`);
+  };
+  const onTaskUncheck = () => {
+    // thisTask[0].fields.isDone = true;
+    handleUpdateTask(taskId, { isDone: false });
     history.replace(`/${projectId}`);
   };
 
   return (
     <>
-      <div className="bg-background absolute top-0 h-full w-full container max-w-xl md:max-w-2xl mx-auto flex flex-col justify-between pb-8 md:pb-12">
+      <div className="bg-background absolute top-0 h-full w-full container max-w-xl md:max-w-2xl mx-auto flex flex-col justify-between pb-12 md:pb-1">
         <nav className="bg-background p-4 flex items-center ">
           <svg
             width="24"
@@ -174,12 +183,21 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
 
         {/* Begin button */}
         <div className="flex flex-col w-full">
-          <button
-            onClick={() => taskComplete()}
-            className="bg-done opacity-90 hover:opacity-100 text-white  py-2 px-6 rounded-full focus:outline-none focus:shadow-outline mx-auto mt-8"
-          >
-            Mark task as complete
-          </button>
+          {!thisTask[0].fields.isDone ? (
+            <button
+              onClick={() => onTaskCheck()}
+              className="bg-done opacity-90 hover:opacity-100 text-white  py-2 px-6 rounded-full focus:outline-none focus:shadow-outline mx-auto mt-8"
+            >
+              Mark task as complete
+            </button>
+          ) : (
+            <button
+              onClick={() => onTaskUncheck()}
+              className="bg-grey-200 opacity-90 hover:opacity-100 text-white  py-2 px-6 rounded-full focus:outline-none focus:shadow-outline mx-auto mt-8"
+            >
+              Uncheck task
+            </button>
+          )}
         </div>
       </div>
     </>

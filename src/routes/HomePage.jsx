@@ -2,7 +2,7 @@ import Profile from "../components/Profile";
 import Navbar from "../components/Navbar";
 import ProjectCardContainer from "../components/ProjectCardContainer";
 import HomeLoader from "../components/Loader screen/HomeLoader";
-import { Route, Switch } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
 import Clock from "./Clock";
 import AddNewTask from "./AddNewTask";

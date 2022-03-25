@@ -68,7 +68,7 @@ function App() {
   }, []);
   return (
     <Router>
-      <div className="container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 h-full">
+      <div className="container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 h-screen h-full">
         <HomePage
           projects={projects}
           tasks={tasks}
