@@ -1,16 +1,24 @@
 import ProjectCard from "./project component/ProjectCard";
+import { useAuth0 } from "@auth0/auth0-react";
+import Profile from "./Profile";
+import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 
 function ProjectCardContainer(props) {
   const { tasks, projects } = props;
+  // const { user } = useAuth0();
   return (
     <>
-      <div className="m-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100">
+      <Profile projectCount={projects.length} />
+      <Navbar />
+
+      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100 ">
         {projects.map((item) => (
           <ProjectCard
             key={item.id}
             item={item}
             tasks={tasks.filter((task) => task.fields.projectId[0] === item.id)}
+            // profile_img = {user.picture}
           />
         ))}
         <Link to="/new-project">

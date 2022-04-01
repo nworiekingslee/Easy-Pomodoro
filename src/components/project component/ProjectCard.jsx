@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ProjectCard({ tasks, item }) {
+function ProjectCard({ tasks, item, profile_img }) {
   const [image, setImage] = useState(
     "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
   );
@@ -29,6 +29,7 @@ function ProjectCard({ tasks, item }) {
               <img
                 className="object-cover h-6 w-6 rounded-full"
                 src={image}
+                // src={profile_img}
                 alt="something"
               />
             </div>
@@ -69,6 +70,7 @@ function ProjectCard({ tasks, item }) {
               <img
                 className="object-cover h-6 w-6 rounded-full"
                 src={image}
+                // src={profile_img}
                 alt="something"
               />
             </div>

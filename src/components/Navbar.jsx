@@ -1,42 +1,13 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
-function Navbar(props) {
-  const createProject = () => {
-    props.exit();
-  };
+const Navbar = (props) => {
+  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
+    useAuth0();
+
+  if (loginWithRedirect) console.log("hellp");
   return (
     <div className="flex justify-between items-center p-4 sticky top-0 bg-background">
-      {/* <div className="my-1.5 input-group relative flex w-48 sm:w-1/2 items-stretch mb-4 border border-solid border-gray-500 rounded-full">
-        <input
-          type="search"
-          className="flex-auto min-w-0 block px-4 py-2 text-base font-normal text-slate-700 bg-transparent bg-clip-padding transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 focus:outline-none"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button
-          className=" inline-block px-6 py-1.5 bg-transparent text-white font-medium text-xs leading-tight flex items-center"
-          type="button"
-          id="button-addon2"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.04 17.28C7.58399 17.28 4.79999 14.496 4.79999 11.04C4.79999 7.584 7.58399 4.8 11.04 4.8C14.496 4.8 17.28 7.584 17.28 11.04C17.28 14.496 14.496 17.28 11.04 17.28ZM11.04 5.76C8.11199 5.76 5.75999 8.112 5.75999 11.04C5.75999 13.968 8.11199 16.32 11.04 16.32C13.968 16.32 16.32 13.968 16.32 11.04C16.32 8.112 13.968 5.76 11.04 5.76Z"
-              className="fill-slate-700 stroke-slate-700"
-              stroke-width="0.5"
-            />
-            <path
-              d="M15.6874 15.0082L19.9978 19.3186L19.3191 19.9973L15.0087 15.6869L15.6874 15.0082Z"
-              className="fill-slate-600 stroke-slate-600"
-            />
-          </svg>
-        </button>
-      </div> */}
       <div className="cursor-pointer">
         <svg
           width="24"
@@ -56,7 +27,6 @@ function Navbar(props) {
           />
         </svg>
       </div>
-
       {/* navlinks */}
       <div className="flex flex-wrap">
         {/* Add project icon */}
@@ -101,8 +71,15 @@ function Navbar(props) {
           />
         </svg>
       </div>
+
+      <button onClick={() => loginWithRedirect()} className=" px-4 py-2">
+        login
+      </button>
+      <button onClick={() => logout()} className=" px-4 py-2">
+        logout
+      </button>
     </div>
   );
-}
+};
 
 export default Navbar;

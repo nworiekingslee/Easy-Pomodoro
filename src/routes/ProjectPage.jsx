@@ -9,8 +9,7 @@ function ProjectPage({ history, projectId, projects, tasks }) {
   );
 
   return (
-    <div className="bg-background absolute top-0 h-screen w-full container max-w-xl md:max-w-2xl mx-auto">
-      <div className="fixed h-full w-full container max-w-xl md:max-w-2xl bg-background"></div>
+    <div className="bg-background w-full h-full container max-w-xl md:max-w-2xl mx-auto">
       <header className="sticky top-0 z-20">
         <nav className="bg-background p-4 flex items-center ">
           <Link to={"/"}>
@@ -42,14 +41,14 @@ function ProjectPage({ history, projectId, projects, tasks }) {
           </div>
         </div>
 
-        <div className="h-24 w-100 bg-background blur-lg relative bottom-16"></div>
+        <div className="h-20 w-100 bg-background blur-lg relative bottom-16"></div>
       </header>
       {thisTasks.map((task) => (
         <Task key={task.id} task={task} projectId={thisProject[0].id} />
       ))}
       <AddTaskComponent projectId={thisProject[0].id} />
-      // Scroll space
-      <div className="h-48 w-100">hi</div>
+
+      <div className="h-48 w-100"></div>
     </div>
   );
 }
