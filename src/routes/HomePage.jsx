@@ -1,12 +1,11 @@
-import Profile from "../components/Profile";
-import Navbar from "../components/Navbar";
 import ProjectCardContainer from "../components/ProjectCardContainer";
 import HomeLoader from "../components/Loader screen/HomeLoader";
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
 import Clock from "./Clock";
 import AddNewTask from "./AddNewTask";
 import AddNewProject from "./AddNewProject";
+import LandingPage from "./LandingPage";
 
 function HomePage({
   projects,
@@ -35,6 +34,7 @@ function HomePage({
                 />
               )}
             />
+          
             <Route
               path="/:projectId/new-task"
               render={(props) => (
