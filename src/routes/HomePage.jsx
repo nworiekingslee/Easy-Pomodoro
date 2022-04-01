@@ -21,9 +21,6 @@ function HomePage({
         <HomeLoader />
       ) : (
         <>
-          <Profile projectCount={projects.length} />
-          <Navbar />
-
           <Switch>
             <Route
               exact

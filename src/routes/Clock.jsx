@@ -93,7 +93,7 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
 
   return (
     <>
-      <div className="bg-background absolute top-0 h-full w-full container max-w-xl md:max-w-2xl mx-auto flex flex-col justify-between pb-12 md:pb-1">
+      <div className="bg-background absolute top-0 h-full w-full container max-w-xl md:max-w-2xl mx-auto flex flex-col justify-between pb-12 md:pb-16">
         <nav className="bg-background p-4 flex items-center ">
           <svg
             width="24"
