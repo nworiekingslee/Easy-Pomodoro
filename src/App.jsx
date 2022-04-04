@@ -2,7 +2,6 @@ import "./App.css";
 import Airtable from "airtable";
 import HomePage from "./routes/HomePage";
 import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Auth0ProviderWithHistory from "./auth0Provider";
 
@@ -11,9 +10,6 @@ const base = new Airtable({
 }).base(process.env.REACT_APP_AIRTABLE_BASE);
 
 function App() {
-  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
-    useAuth0;
-
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
 

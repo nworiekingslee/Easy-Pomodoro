@@ -1,11 +1,12 @@
 import { useState } from "react";
+import HomeLoader from "../components/Loader screen/HomeLoader";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 const AddNewProject = (props) => {
-  console.log("props", props);
   const [newProject, setNewProject] = useState("");
+  const { user } = useAuth0();
 
   const handleChange = ({ target }) => {
-    // console.log(newTask);
     setNewProject(target.value);
   };
 
@@ -23,6 +24,7 @@ const AddNewProject = (props) => {
     props.handleCreateProject({
       projectTitle: newProject,
       date: dateNow,
+      userId: user.sub,
     });
   };
 
@@ -74,4 +76,6 @@ const AddNewProject = (props) => {
   );
 };
 
-export default AddNewProject;
+export default withAuthenticationRequired(AddNewProject, {
+  onRedirecting: () => <HomeLoader />,
+});

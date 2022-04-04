@@ -2,10 +2,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
-  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
-    useAuth0();
+  const { isLoading, isAuthenticated, error, user, logout } = useAuth0();
 
-  if (loginWithRedirect) console.log("hellp");
   return (
     <div className="flex justify-between items-center p-4 sticky top-0 bg-background">
       <div className="cursor-pointer">
@@ -72,9 +70,6 @@ const Navbar = (props) => {
         </svg>
       </div>
 
-      <button onClick={() => loginWithRedirect()} className=" px-4 py-2">
-        login
-      </button>
       <button onClick={() => logout()} className=" px-4 py-2">
         logout
       </button>

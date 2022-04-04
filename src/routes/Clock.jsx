@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import sound from "./../music/sound.wav";
+import HomeLoader from "../components/Loader screen/HomeLoader";
 
 const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
   const thisTask = tasks.filter((task) => task.id === taskId);
@@ -204,4 +206,6 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
   );
 };
 
-export default Clock;
+export default withAuthenticationRequired(Clock, {
+  onRedirecting: () => <HomeLoader />,
+});

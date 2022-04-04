@@ -1,20 +1,18 @@
-import Profile from "../components/Profile";
-import Navbar from "../components/Navbar";
 import ProjectCardContainer from "../components/ProjectCardContainer";
 import HomeLoader from "../components/Loader screen/HomeLoader";
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
 import Clock from "./Clock";
 import AddNewTask from "./AddNewTask";
 import AddNewProject from "./AddNewProject";
 
-function HomePage({
+const HomePage = ({
   projects,
   tasks,
   handleCreateTask,
   handleCreateProject,
   handleUpdateTask,
-}) {
+}) => {
   return (
     <>
       {!projects.length ? (
@@ -49,6 +47,8 @@ function HomePage({
                 />
               )}
             />
+
+            {/* This route is protected check module */}
             <Route
               path="/:projectId/:taskId"
               render={(props) => (
@@ -74,18 +74,18 @@ function HomePage({
                 />
               )}
             />
+            {/* This route is protected */}
             <Route
               path="/"
               render={() => (
                 <ProjectCardContainer projects={projects} tasks={tasks} />
               )}
             />
-            {/* <Route path="/project/:id" component={ProjectPage} /> */}
           </Switch>
         </>
       )}
     </>
   );
-}
+};
 
 export default HomePage;
