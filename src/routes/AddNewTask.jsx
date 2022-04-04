@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import HomeLoader from "../components/Loader screen/HomeLoader";
 
 const AddNewTask = (props) => {
   const projectId = [];
@@ -79,4 +81,6 @@ const AddNewTask = (props) => {
   );
 };
 
-export default AddNewTask;
+export default withAuthenticationRequired(AddNewTask, {
+  onRedirecting: () => <HomeLoader />,
+});

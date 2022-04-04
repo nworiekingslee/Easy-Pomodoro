@@ -7,20 +7,29 @@ import HomeLoader from "./Loader screen/HomeLoader";
 
 function ProjectCardContainer({ tasks, projects }) {
   const { user } = useAuth0();
-  const { name, picture, email } = user;
+  const { nickname, picture, email } = user;
+  console.log("user.sub", user.sub);
+
+  console.log("Projects", projects);
+
+  const userProjects = projects.filter(
+    (project) => project.fields.userId === user.sub
+  );
+
+  console.log("userProjects", userProjects);
 
   return (
     <>
       <Profile
         projectCount={projects.length}
-        name={name}
+        name={nickname}
         picture={picture}
         email={email}
       />
       <Navbar />
 
       <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100 ">
-        {projects.map((item) => (
+        {userProjects.map((item) => (
           <ProjectCard
             key={item.id}
             item={item}

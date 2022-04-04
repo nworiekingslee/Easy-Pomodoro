@@ -5,15 +5,14 @@ import ProjectPage from "./ProjectPage";
 import Clock from "./Clock";
 import AddNewTask from "./AddNewTask";
 import AddNewProject from "./AddNewProject";
-import LandingPage from "./LandingPage";
 
-function HomePage({
+const HomePage = ({
   projects,
   tasks,
   handleCreateTask,
   handleCreateProject,
   handleUpdateTask,
-}) {
+}) => {
   return (
     <>
       {!projects.length ? (
@@ -34,7 +33,6 @@ function HomePage({
                 />
               )}
             />
-          
             <Route
               path="/:projectId/new-task"
               render={(props) => (
@@ -49,6 +47,8 @@ function HomePage({
                 />
               )}
             />
+
+            {/* This route is protected check module */}
             <Route
               path="/:projectId/:taskId"
               render={(props) => (
@@ -74,18 +74,18 @@ function HomePage({
                 />
               )}
             />
+            {/* This route is protected */}
             <Route
               path="/"
               render={() => (
                 <ProjectCardContainer projects={projects} tasks={tasks} />
               )}
             />
-            {/* <Route path="/project/:id" component={ProjectPage} /> */}
           </Switch>
         </>
       )}
     </>
   );
-}
+};
 
 export default HomePage;
