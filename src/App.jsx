@@ -34,6 +34,34 @@ function App() {
     console.log(createdProject);
   };
 
+  const deleteProject = async (id) => {
+    base("projects").destroy(id, function (err, deletedRecords) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log("Deleted", deletedRecords.length, "records");
+    });
+
+    console.log("deleted");
+
+    base("projects")
+      .select({ view: "Grid view" })
+      .eachPage(
+        (records, fetchNextPage) => {
+          setProjects(records);
+          console.log("projects", records);
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        }
+      );
+  };
+
   const createTask = async (newTask) => {
     const createdTask = await base("tasks").create(newTask);
     setTasks([...tasks, createdTask]);
@@ -53,29 +81,44 @@ function App() {
   };
 
   useEffect(async () => {
-    base("projects")
-      .select({ view: "Grid view" })
-      .eachPage(
-        (records, fetchNextPage) => {
-          setProjects(records);
-          console.log("projects", records);
-          fetchNextPage();
-        },
-        function done(err) {
-          if (err) {
-            console.error(err);
-            return;
+    try {
+      base("projects")
+        .select({ view: "Grid view" })
+        .eachPage(
+          (records, fetchNextPage) => {
+            setProjects(records);
+            console.log("projects", records);
+            fetchNextPage();
+          },
+          function done(err) {
+            if (err) {
+              console.error(err);
+              return;
+            }
           }
-        }
-      );
-
-    await base("tasks")
-      .select({ view: "Grid view" })
-      .eachPage((records, fetchNextPage) => {
-        setTasks(records);
-        // console.log("tasks", records);
-        fetchNextPage();
-      });
+        );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      await base("tasks")
+        .select({ view: "Grid view" })
+        .eachPage(
+          (records, fetchNextPage) => {
+            setTasks(records);
+            console.log("tasks", records);
+            fetchNextPage();
+          },
+          function done(err) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          }
+        );
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   return (
@@ -89,6 +132,7 @@ function App() {
             handleUpdateTask={updateTask}
             handleCreateTask={createTask}
             handleCreateProject={createProject}
+            handleDeleteProject={deleteProject}
           />
         </div>
       </Auth0ProviderWithHistory>
