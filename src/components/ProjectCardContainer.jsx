@@ -5,35 +5,31 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import HomeLoader from "./Loader screen/HomeLoader";
 
-function ProjectCardContainer({ tasks, projects }) {
+function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
   const { user } = useAuth0();
   const { nickname, picture, email } = user;
-  console.log("user.sub", user.sub);
-
-  console.log("Projects", projects);
 
   const userProjects = projects.filter(
     (project) => project.fields.userId === user.sub
   );
 
-  console.log("userProjects", userProjects);
-
   return (
     <>
       <Profile
-        projectCount={projects.length}
+        projectCount={userProjects.length}
         name={nickname}
         picture={picture}
         email={email}
       />
       <Navbar />
 
-      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100 ">
+      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100">
         {userProjects.map((item) => (
           <ProjectCard
             key={item.id}
             item={item}
             tasks={tasks.filter((task) => task.fields.projectId[0] === item.id)}
+            handleDeleteProject={handleDeleteProject}
             profile_img={picture}
           />
         ))}
@@ -51,6 +47,8 @@ function ProjectCardContainer({ tasks, projects }) {
     </>
   );
 }
+
+// export default ProjectCardContainer;
 
 export default withAuthenticationRequired(ProjectCardContainer, {
   onRedirecting: () => <HomeLoader />,

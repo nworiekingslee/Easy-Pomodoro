@@ -11,6 +11,7 @@ const HomePage = ({
   tasks,
   handleCreateTask,
   handleCreateProject,
+  handleDeleteProject,
   handleUpdateTask,
 }) => {
   return (
@@ -78,7 +79,11 @@ const HomePage = ({
             <Route
               path="/"
               render={() => (
-                <ProjectCardContainer projects={projects} tasks={tasks} />
+                <ProjectCardContainer
+                  projects={projects}
+                  tasks={tasks}
+                  handleDeleteProject={handleDeleteProject}
+                />
               )}
             />
           </Switch>
