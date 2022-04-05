@@ -23,7 +23,7 @@ function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
       />
       <Navbar />
 
-      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100 ">
+      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100">
         {userProjects.map((item) => (
           <ProjectCard
             key={item.id}

@@ -34,6 +34,8 @@ function App() {
     console.log(createdProject);
   };
 
+ 
+
   const deleteProject = async (id) => {
     const taskToDelete = tasks.filter(
       (task) => task.fields.projectId[0] === id
