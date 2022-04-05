@@ -8,15 +8,10 @@ import HomeLoader from "./Loader screen/HomeLoader";
 function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
   const { user } = useAuth0();
   const { nickname, picture, email } = user;
-  console.log("user.sub", user.sub);
-
-  console.log("Projects", projects);
 
   const userProjects = projects.filter(
     (project) => project.fields.userId === user.sub
   );
-
-  console.log("xxxx", tasks);
 
   return (
     <>
@@ -33,7 +28,7 @@ function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
           <ProjectCard
             key={item.id}
             item={item}
-            tasks={tasks.filter((task) => task.fields.projectId === item.id)}
+            tasks={tasks.filter((task) => task.fields.projectId[0] === item.id)}
             handleDeleteProject={handleDeleteProject}
             profile_img={picture}
           />

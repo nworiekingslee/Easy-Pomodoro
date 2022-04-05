@@ -35,6 +35,21 @@ function App() {
   };
 
   const deleteProject = async (id) => {
+    const taskToDelete = tasks.filter(
+      (task) => task.fields.projectId[0] === id
+    );
+
+    const taskId = [];
+    taskToDelete.map((task) => taskId.push(task.id));
+
+    base("tasks").destroy(taskId, function (err, deletedRecords) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log("Deleted", deletedRecords.length, "records");
+    });
+
     base("projects").destroy(id, function (err, deletedRecords) {
       if (err) {
         console.error(err);
@@ -43,14 +58,28 @@ function App() {
       console.log("Deleted", deletedRecords.length, "records");
     });
 
-    console.log("deleted");
-
     base("projects")
       .select({ view: "Grid view" })
       .eachPage(
         (records, fetchNextPage) => {
           setProjects(records);
           console.log("projects", records);
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        }
+      );
+
+    base("tasks")
+      .select({ view: "Grid view" })
+      .eachPage(
+        (records, fetchNextPage) => {
+          setTasks(records);
+          console.log("tasks", records);
           fetchNextPage();
         },
         function done(err) {
@@ -101,7 +130,7 @@ function App() {
       console.log(e);
     }
     try {
-      await base("tasks")
+      base("tasks")
         .select({ view: "Grid view" })
         .eachPage(
           (records, fetchNextPage) => {

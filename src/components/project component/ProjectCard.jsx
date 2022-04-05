@@ -21,12 +21,10 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
     : "hidden bg-blue-600";
 
   return (
-    <div className="bg-grey-100 relative">
+    <div className="bg-grey-100 relative cursor-pointer">
       <div
         onClick={() => {
-          // setDel((del) => !del);
           handleDeleteProject(`${item.id}`);
-          console.log("deleted");
         }}
         className={delStyling}
       >
@@ -62,7 +60,7 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
 
       {checkPercentage() === 100 ? (
         <Link to={`/${item.id}`}>
-          <div className="project-done bg-white border  border-grey-100 hover:border-done-outline hover:shadow hover:shadow-done-outline w-fill p-4 rounded-lg cursor-pointer">
+          <div className=" project-done bg-white border  border-grey-100 hover:border-done-outline hover:shadow hover:shadow-done-outline w-fill p-4 rounded-lg cursor-pointer">
             <p className="project-title text-xl md:text-lg font-semibold hover:text-done ">
               {item.fields.projectTitle}
             </p>
