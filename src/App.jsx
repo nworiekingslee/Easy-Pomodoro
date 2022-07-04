@@ -34,8 +34,6 @@ function App() {
     console.log(createdProject);
   };
 
- 
-
   const deleteProject = async (id) => {
     const taskToDelete = tasks.filter(
       (task) => task.fields.projectId[0] === id
@@ -150,22 +148,28 @@ function App() {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+
+    console.log("reload");
+  }, [projects]);
 
   return (
     <Router>
       <Auth0ProviderWithHistory>
-        <div className="app container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 my-0 z-100">
-          <div className="fixed top-0 left-0 bg-background h-screen w-screen body"></div>
-          <HomePage
-            projects={projects}
-            tasks={tasks}
-            handleUpdateTask={updateTask}
-            handleCreateTask={createTask}
-            handleCreateProject={createProject}
-            handleDeleteProject={deleteProject}
-          />
-        </div>
+        {projects ? (
+          <div className="app container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 my-0 z-100">
+            <div className="fixed top-0 left-0 bg-background h-screen w-screen body"></div>
+            <HomePage
+              projects={projects}
+              tasks={tasks}
+              handleUpdateTask={updateTask}
+              handleCreateTask={createTask}
+              handleCreateProject={createProject}
+              handleDeleteProject={deleteProject}
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </Auth0ProviderWithHistory>
     </Router>
   );
