@@ -149,7 +149,7 @@ function App() {
       console.log(e);
     }
 
-    console.log("reload");
+    console.log("reload 2");
   }, []);
 
   return (
