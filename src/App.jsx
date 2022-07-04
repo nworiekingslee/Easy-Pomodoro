@@ -150,7 +150,7 @@ function App() {
     }
 
     console.log("reload");
-  }, [projects]);
+  }, []);
 
   return (
     <Router>
