@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
-  const [image, setImage] = useState(
-    "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-  );
+  const { user } = useAuth0();
+  const { nickname, picture } = user;
 
   const [del, setDel] = useState(false);
 
@@ -21,7 +21,7 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
     : "hidden bg-blue-600";
 
   return (
-    <div className="bg-grey-100 relative cursor-pointer">
+    <div className=" bg-grey-100 relative cursor-pointer">
       <div
         onClick={() => {
           handleDeleteProject(`${item.id}`);
@@ -69,9 +69,9 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
               <p className="text-sm text-slate-500">{item.fields.date}</p>
               <img
                 className="object-cover h-6 w-6 rounded-full"
-                src={image}
+                src={picture}
                 // src={profile_img}
-                alt="something"
+                alt={nickname}
               />
             </div>
             <div className="mt-6">
