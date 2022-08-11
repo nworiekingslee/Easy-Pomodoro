@@ -2,10 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
-  const [image, setImage] = useState(
-    "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-  );
-
   const [del, setDel] = useState(false);
 
   const doneTask = tasks.filter((task) => task.fields.isDone === true).length;
@@ -43,20 +39,16 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
         <path
           d="M15.6 11.2C16.4837 11.2 17.2 10.4837 17.2 9.6C17.2 8.71634 16.4837 8 15.6 8C14.7163 8 14 8.71634 14 9.6C14 10.4837 14.7163 11.2 15.6 11.2Z"
           className="fill-slate-600"
-          // fill="#9296A5"
         />
         <path
           d="M15.6 17.6C16.4837 17.6 17.2 16.8836 17.2 16C17.2 15.1163 16.4837 14.4 15.6 14.4C14.7163 14.4 14 15.1163 14 16C14 16.8836 14.7163 17.6 15.6 17.6Z"
           className="fill-slate-600"
-          // fill="#9296A5"
         />
         <path
           d="M15.6 24C16.4837 24 17.2 23.2836 17.2 22.4C17.2 21.5163 16.4837 20.8 15.6 20.8C14.7163 20.8 14 21.5163 14 22.4C14 23.2836 14.7163 24 15.6 24Z"
           className="fill-slate-600"
-          // fill="#9296A5"
         />
       </svg>
-      {/* Render a different card for when the project is completed for a different hover effect */}
 
       {checkPercentage() === 100 ? (
         <Link to={`/${item.id}`}>
@@ -69,14 +61,12 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
               <p className="text-sm text-slate-500">{item.fields.date}</p>
               <img
                 className="object-cover h-6 w-6 rounded-full"
-                src={image}
-                // src={profile_img}
+                src={profile_img}
                 alt="something"
               />
             </div>
             <div className="mt-6">
               <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
-                {/* Render a different progressbar with a different color for when the project is completed */}
                 {checkPercentage() === 100 ? (
                   <div
                     className="bg-done h-1 rounded-full"
@@ -100,7 +90,6 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
         </Link>
       ) : (
         <Link to={`/${item.id}`}>
-          {/* Render a different card for when the project is completed for a different hover effect */}
           <div className="project-ongoing bg-white border  border-grey-100 hover:border-outline hover:shadow hover:shadow-outline w-fill p-4 rounded-lg cursor-pointer">
             <p className="project-title text-xl md:text-lg font-semibold hover:text-brand ">
               {item.fields.projectTitle}
@@ -110,14 +99,12 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
               <p className="text-sm text-slate-500">{item.fields.date}</p>
               <img
                 className="object-cover h-6 w-6 rounded-full"
-                src={image}
-                // src={profile_img}
+                src={profile_img}
                 alt="something"
               />
             </div>
             <div className="mt-6">
               <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
-                {/* Render a different progressbar with a different color for when the project is completed */}
                 {checkPercentage() === 100 ? (
                   <div
                     className="bg-done h-1 rounded-full"

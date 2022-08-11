@@ -83,12 +83,10 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
   };
 
   const onTaskCheck = () => {
-    // thisTask[0].fields.isDone = true;
     handleUpdateTask(taskId, { isDone: true });
     history.replace(`/${projectId}`);
   };
   const onTaskUncheck = () => {
-    // thisTask[0].fields.isDone = true;
     handleUpdateTask(taskId, { isDone: false });
     history.replace(`/${projectId}`);
   };
@@ -142,7 +140,7 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
           {status === 2 ? (
             <div
               onClick={() => start()}
-              className="play-btn h-16 w-16 bg-white mx-auto border border-2 border-done-outline rounded-full flex justify-center items-center"
+              className="play-btn h-16 w-16 bg-white mx-auto border  border-done-outline rounded-full flex justify-center items-center"
             >
               <svg
                 width="57"
@@ -163,7 +161,7 @@ const Clock = ({ taskId, projectId, history, tasks, handleUpdateTask }) => {
           {status === 1 ? (
             <div
               onClick={() => pause()}
-              className="pause-btn h-16 w-16 bg-white mx-auto border border-2 border-outline rounded-full flex justify-center items-center"
+              className="pause-btn h-16 w-16 bg-white mx-auto border border-outline rounded-full flex justify-center items-center"
             >
               <svg
                 width="15"

@@ -2,8 +2,8 @@ import "./App.css";
 import Airtable from "airtable";
 import HomePage from "./routes/HomePage";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Auth0ProviderWithHistory from "./auth0Provider";
+import { BrowserRouter as Router} from "react-router-dom";
+
 
 const base = new Airtable({
   apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
@@ -109,56 +109,56 @@ function App() {
       });
   };
 
-  useEffect(async () => {
-    try {
-      base("projects")
-        .select({ view: "Grid view" })
-        .eachPage(
-          (records, fetchNextPage) => {
-            setProjects(records);
-            console.log("projects", records);
-            fetchNextPage();
-          },
-          function done(err) {
-            if (err) {
-              console.error(err);
-              return;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        base("projects")
+          .select({ view: "Grid view" })
+          .eachPage(
+            (records, fetchNextPage) => {
+              setProjects(records);
+              console.log("projects", records);
+              fetchNextPage();
+            },
+            function done(err) {
+              if (err) {
+                console.error(err);
+                return;
+              }
             }
-          }
-        );
-    } catch (e) {
-      console.log(e);
-    }
-    try {
-      base("tasks")
-        .select({ view: "Grid view" })
-        .eachPage(
-          (records, fetchNextPage) => {
-            setTasks(records);
-            console.log("tasks", records);
-            fetchNextPage();
-          },
-          function done(err) {
-            if (err) {
-              console.error(err);
-              return;
+          );
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        base("tasks")
+          .select({ view: "Grid view" })
+          .eachPage(
+            (records, fetchNextPage) => {
+              setTasks(records);
+              console.log("tasks", records);
+              fetchNextPage();
+            },
+            function done(err) {
+              if (err) {
+                console.error(err);
+                return;
+              }
             }
-          }
-        );
-    } catch (e) {
-      console.log(e);
-    }
+          );
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
-    console.log("reload 2");
+    fetchData();
   }, []);
 
   return (
     <Router>
-      <Auth0ProviderWithHistory>
-        {projects ? (
-          <div className="app container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 my-0 z-100">
-            <div className="fixed top-0 left-0 bg-background h-screen w-screen body"></div>
-            <HomePage
+      <div className="app container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 my-0 z-100">
+        <div className="fixed top-0 left-0 bg-background h-screen w-screen body"></div>
+           <HomePage
               projects={projects}
               tasks={tasks}
               handleUpdateTask={updateTask}
@@ -166,11 +166,7 @@ function App() {
               handleCreateProject={createProject}
               handleDeleteProject={deleteProject}
             />
-          </div>
-        ) : (
-          ""
-        )}
-      </Auth0ProviderWithHistory>
+      </div>
     </Router>
   );
 }

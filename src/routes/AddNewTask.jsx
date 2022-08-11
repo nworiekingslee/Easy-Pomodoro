@@ -9,7 +9,6 @@ const AddNewTask = (props) => {
   const [newTask, setNewTask] = useState("");
 
   const handleChange = ({ target }) => {
-    // console.log(newTask);
     setNewTask(target.value);
   };
 

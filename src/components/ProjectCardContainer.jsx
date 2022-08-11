@@ -48,8 +48,6 @@ function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
   );
 }
 
-// export default ProjectCardContainer;
-
 export default withAuthenticationRequired(ProjectCardContainer, {
   onRedirecting: () => <HomeLoader />,
 });

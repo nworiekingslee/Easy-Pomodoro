@@ -16,78 +16,75 @@ const HomePage = ({
 }) => {
   return (
     <>
-      {!projects.length ? (
+      {!projects ? (
         <HomeLoader />
       ) : (
-        <>
-          <Switch>
-            <Route
-              exact
-              path="/new-project"
-              render={(props) => (
-                <AddNewProject
-                  handleCreateProject={handleCreateProject}
-                  history={props.history}
-                  projects={projects}
-                  tasks={tasks}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/:projectId/new-task"
-              render={(props) => (
-                <AddNewTask
-                  handleCreateTask={handleCreateTask}
-                  handleUpdateTask={handleUpdateTask}
-                  projectId={props.match.params.projectId}
-                  history={props.history}
-                  projects={projects}
-                  tasks={tasks}
-                  {...props}
-                />
-              )}
-            />
+        <Switch>
+          <Route
+            exact
+            path="/new-project"
+            render={(props) => (
+              <AddNewProject
+                handleCreateProject={handleCreateProject}
+                history={props.history}
+                projects={projects}
+                tasks={tasks}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/:projectId/new-task"
+            render={(props) => (
+              <AddNewTask
+                handleCreateTask={handleCreateTask}
+                handleUpdateTask={handleUpdateTask}
+                projectId={props.match.params.projectId}
+                history={props.history}
+                projects={projects}
+                tasks={tasks}
+                {...props}
+              />
+            )}
+          />
 
-            {/* This route is protected check module */}
-            <Route
-              path="/:projectId/:taskId"
-              render={(props) => (
-                <Clock
-                  handleUpdateTask={handleUpdateTask}
-                  projectId={props.match.params.projectId}
-                  taskId={props.match.params.taskId}
-                  history={props.history}
-                  tasks={tasks}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/:projectId"
-              render={(props) => (
-                <ProjectPage
-                  projectId={props.match.params.projectId}
-                  history={props.history}
-                  projects={projects}
-                  tasks={tasks}
-                  {...props}
-                />
-              )}
-            />
-            {/* This route is protected */}
-            <Route
-              path="/"
-              render={() => (
-                <ProjectCardContainer
-                  projects={projects}
-                  tasks={tasks}
-                  handleDeleteProject={handleDeleteProject}
-                />
-              )}
-            />
-          </Switch>
-        </>
+          <Route
+            path="/:projectId/:taskId"
+            render={(props) => (
+              <Clock
+                handleUpdateTask={handleUpdateTask}
+                projectId={props.match.params.projectId}
+                taskId={props.match.params.taskId}
+                history={props.history}
+                tasks={tasks}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/:projectId"
+            render={(props) => (
+              <ProjectPage
+                projectId={props.match.params.projectId}
+                history={props.history}
+                projects={projects}
+                tasks={tasks}
+                {...props}
+              />
+            )}
+          />
+
+          <Route
+            path="/"
+            render={() => (
+              <ProjectCardContainer
+                projects={projects}
+                tasks={tasks}
+                handleDeleteProject={handleDeleteProject}
+              />
+            )}
+          />
+        </Switch>
       )}
     </>
   );

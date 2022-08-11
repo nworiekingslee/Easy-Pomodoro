@@ -7,7 +7,7 @@ function Profile({ projectCount, name, picture }) {
           src={picture}
           alt={name}
         />
-        <p className="pt-2 text-base text-lg">{name}</p>
+        <p className="pt-2 text-base font-semibold">{name}</p>
         <p className="text-sm text-slate-500 font-light">
           {projectCount} Projects
         </p>

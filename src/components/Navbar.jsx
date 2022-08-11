@@ -2,9 +2,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const [menu, setMenu] = useState(false);
-  const { isLoading, isAuthenticated, error, user, logout } = useAuth0();
+  const { logout } = useAuth0();
 
   const menuStyling = menu
     ? "z-40 absolute text-red-500 top-12 right-4 py-2 px-4 bg-white hover:bg-red-100 shadow-sm w-24 border border-1 border-grey-100 rounded-xl shadow-xl"
@@ -16,7 +16,7 @@ const Navbar = (props) => {
   };
 
   return (
-    <div className="relative sticky top-0 bg-red-100 z-50">
+    <div className="sticky top-0 bg-red-100 z-50">
       <div className="flex justify-between items-center p-4 bg-background">
         <div className="cursor-pointer">
           <svg
@@ -72,7 +72,10 @@ const Navbar = (props) => {
           </svg>
         </div>
       </div>
-      <button onClick={() => handleLogout()} className={menuStyling}>
+      <button
+        onClick={() => logout({ returnTo: window.location.origin })}
+        className={menuStyling}
+      >
         logout
       </button>
     </div>
