@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
   const [del, setDel] = useState(false);
+  const [confirmDel, setConfirmDel] = useState(false);
 
   const doneTask = tasks.filter((task) => task.fields.isDone === true).length;
   const allTask = tasks.length;
@@ -12,20 +13,54 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
     return (doneTask / allTask) * 100;
   }
 
-  const delStyling = del
-    ? "z-20 absolute text-red-500 top-4 right-8  py-2 px-4 bg-white hover:bg-red-100 shadow-sm w-24 border border-1 border-grey-100 rounded-xl"
-    : "hidden bg-blue-600";
-
   return (
     <div className="bg-grey-100 relative cursor-pointer">
-      <div
-        onClick={() => {
-          handleDeleteProject(`${item.id}`);
-        }}
-        className={delStyling}
-      >
-        Delete
-      </div>
+      {del ? (
+        <div className="z-50 fixed top-0 left-0 w-screen h-screen bg-[#00000088] flex items-start justify-center shadow-2xl border">
+          <div className="w-full z-40 sm:w-40 pb-4 mt-40 mx-5 bg-background rounded-xl ">
+            <div
+              className="p-3 float-right mx-2 my-2 rounded-md cursor-pointer"
+              onClick={() => {
+                setDel(!del);
+                setConfirmDel(!confirmDel);
+              }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41L17.59 5Z"
+                  fill="#2E3A59"
+                ></path>
+              </svg>
+            </div>
+            {!confirmDel ? (
+              <button
+                onClick={() => setConfirmDel(!confirmDel)}
+                className="text-left w-full py-3 px-4 hover:bg-grey-100 border border-1 border-grey-100"
+              >
+                Delete project
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  handleDeleteProject(`${item.id}`);
+                  setDel(!del);
+                }}
+                className="text-left text-red-600 w-full py-3 px-4 hover:bg-red-50 border border-1 border-grey-100"
+              >
+                Confirm delete
+              </button>
+            )}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
 
       <svg
         width="32"

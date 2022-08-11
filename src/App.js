@@ -10,7 +10,7 @@ const base = new Airtable({
 }).base(process.env.REACT_APP_AIRTABLE_BASE);
 
 function App() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState();
   const [tasks, setTasks] = useState([]);
 
   const createProject = async (newProject) => {
@@ -119,6 +119,7 @@ function App() {
           .eachPage(
             (records, fetchNextPage) => {
               setProjects(records);
+             
               // console.log("projects", records);
               fetchNextPage();
             },

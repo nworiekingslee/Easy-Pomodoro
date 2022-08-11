@@ -1,6 +1,6 @@
 function HomeLoader() {
   return (
-    <div className="h-screen p-4 bg-white">
+    <div className="h-screen p-4">
       <div className=" px-4 flex justify-center items-center h-56">
         <div className="flex flex-col items-center animate-pulse ">
           <div className="h-12 w-12 rounded-full bg-grey-100"></div>

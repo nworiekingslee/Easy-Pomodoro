@@ -7,17 +7,12 @@ import HomeLoader from "./Loader screen/HomeLoader";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
 
-function ProjectCardContainer({
-  tasks,
-  projects,
-  handleDeleteProject,
-  updateProjects,
-}) {
+function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
   const { user } = useAuth0();
-  const { nickname, picture, email } = user;
+  const { nickname, picture, email, sub } = user;
 
   const [userProjects, setUserProjects] = useState(
-    projects.filter((project) => project.fields.userId === user.sub)
+    projects.filter((project) => project.fields.userId === sub)
   );
 
   const updateUserProjects = (newProjects) => {
