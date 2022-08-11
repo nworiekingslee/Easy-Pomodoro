@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import HomeLoader from "./Loader screen/HomeLoader";
 import { useState, useEffect } from "react";
+import Footer from "./Footer";
 
 function ProjectCardContainer({
   tasks,
@@ -54,6 +55,7 @@ function ProjectCardContainer({
           </div>
         </Link>
       </div>
+      <Footer />
     </>
   );
 }

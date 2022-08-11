@@ -157,7 +157,9 @@ function App() {
   }, []);
 
   return (
-    <Router>
+   <>
+   
+   <Router>
       <div className="app container max-w-xl md:max-w-2xl mx-auto bg-background text-slate-700 my-0 z-100">
         <div className="fixed top-0 left-0 bg-background h-screen w-screen body"></div>
            <HomePage
@@ -171,6 +173,7 @@ function App() {
             />
       </div>
     </Router>
+   </> 
   );
 }
 

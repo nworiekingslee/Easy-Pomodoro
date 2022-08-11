@@ -29,21 +29,7 @@ const Navbar = ({ projects, updateUserProjects }) => {
   return (
     <div className="sticky top-0 bg-red-100 z-50">
       <div className="flex justify-between items-center p-4 bg-background">
-        <div className="cursor-pointer">
-          <a
-            className="fixed left-4 bottom-6 border h-8 w-8 rounded-full"
-            href="https://www.kingslee.me"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <img
-              src="https://avatars.githubusercontent.com/u/55883854?s=400&u=4423d9b8b8c51fc7cb969330c5bb00cd9cac8bc8&v=4"
-              className="h-8 w-8 rounded-full"
-              alt=""
-              style={{ objectFit: "cover" }}
-            />
-          </a>
-
+        <div className="cursor-pointer pr-3">
           <label className="relative block">
             <span className="sr-only">Search</span>
             <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -66,7 +52,7 @@ const Navbar = ({ projects, updateUserProjects }) => {
               </svg>
             </span>
             <input
-              className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-grey-100 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-grey-200 sm:text-sm"
+              className="placeholder:italic w-full placeholder:text-slate-400 block bg-white border border-grey-100 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-grey-200 sm:text-sm"
               placeholder="Search projects..."
               type="text"
               name="search"
@@ -75,7 +61,7 @@ const Navbar = ({ projects, updateUserProjects }) => {
           </label>
         </div>
         {/* navlinks */}
-        <div className="flex flex-wrap">
+        <div className="flex">
           {/* Add project icon */}
           <Link to="/new-project">
             <svg
