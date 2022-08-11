@@ -13,6 +13,7 @@ const HomePage = ({
   handleCreateProject,
   handleDeleteProject,
   handleUpdateTask,
+  updateProjects,
 }) => {
   return (
     <>

@@ -4,14 +4,24 @@ import Profile from "./Profile";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import HomeLoader from "./Loader screen/HomeLoader";
+import { useState, useEffect } from "react";
 
-function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
+function ProjectCardContainer({
+  tasks,
+  projects,
+  handleDeleteProject,
+  updateProjects,
+}) {
   const { user } = useAuth0();
   const { nickname, picture, email } = user;
 
-  const userProjects = projects.filter(
-    (project) => project.fields.userId === user.sub
+  const [userProjects, setUserProjects] = useState(
+    projects.filter((project) => project.fields.userId === user.sub)
   );
+
+  const updateUserProjects = (newProjects) => {
+    setUserProjects(newProjects);
+  };
 
   return (
     <>
@@ -21,7 +31,7 @@ function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
         picture={picture}
         email={email}
       />
-      <Navbar />
+      <Navbar projects={userProjects} updateUserProjects={updateUserProjects} />
 
       <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100">
         {userProjects.map((item) => (

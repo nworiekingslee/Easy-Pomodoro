@@ -21,7 +21,7 @@ function App() {
       .eachPage(
         (records, fetchNextPage) => {
           setProjects(records);
-          console.log("projects", records);
+          // console.log("projects", records);
           fetchNextPage();
         },
         function done(err) {
@@ -31,8 +31,10 @@ function App() {
           }
         }
       );
-    console.log(createdProject);
+    // console.log(createdProject);
   };
+
+
 
   const deleteProject = async (id) => {
     const taskToDelete = tasks.filter(
@@ -63,7 +65,7 @@ function App() {
       .eachPage(
         (records, fetchNextPage) => {
           setProjects(records);
-          console.log("projects", records);
+          // console.log("projects", records);
           fetchNextPage();
         },
         function done(err) {
@@ -117,7 +119,7 @@ function App() {
           .eachPage(
             (records, fetchNextPage) => {
               setProjects(records);
-              console.log("projects", records);
+              // console.log("projects", records);
               fetchNextPage();
             },
             function done(err) {
@@ -136,7 +138,7 @@ function App() {
           .eachPage(
             (records, fetchNextPage) => {
               setTasks(records);
-              console.log("tasks", records);
+              // console.log("tasks", records);
               fetchNextPage();
             },
             function done(err) {
@@ -165,6 +167,7 @@ function App() {
               handleCreateTask={createTask}
               handleCreateProject={createProject}
               handleDeleteProject={deleteProject}
+            
             />
       </div>
     </Router>
