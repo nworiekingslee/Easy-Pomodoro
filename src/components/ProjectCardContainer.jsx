@@ -4,20 +4,16 @@ import Profile from "./Profile";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import HomeLoader from "./Loader screen/HomeLoader";
-import { useState, useEffect } from "react";
 import Footer from "./Footer";
 
-function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
+function ProjectCardContainer({
+  tasks,
+  projects: userProjects,
+  handleDeleteProject,
+  updateProjects,
+}) {
   const { user } = useAuth0();
-  const { nickname, picture, email, sub } = user;
-
-  const [userProjects, setUserProjects] = useState(
-    projects.filter((project) => project.fields.userId === sub)
-  );
-
-  const updateUserProjects = (newProjects) => {
-    setUserProjects(newProjects);
-  };
+  const { nickname, picture, email } = user;
 
   return (
     <>
@@ -27,9 +23,9 @@ function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
         picture={picture}
         email={email}
       />
-      <Navbar projects={userProjects} updateUserProjects={updateUserProjects} />
+      <Navbar projects={userProjects} updateUserProjects={updateProjects} />
 
-      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100">
+      <div className="mx-4 grid gap-3 md:grid-cols-2 md:grid-rows-2 h-100 mb-16">
         {userProjects.map((item) => (
           <ProjectCard
             key={item.id}
@@ -40,7 +36,7 @@ function ProjectCardContainer({ tasks, projects, handleDeleteProject }) {
           />
         ))}
         <Link to="/new-project">
-          <div className="p-4 w-100 bg-background relative mb-2 rounded-lg border border-dashed hover:shadow  border-grey-200 cursor-pointer flex flex-col justify-center items-center text-grey-200">
+          <div className="p-4 w-100 bg-background relative rounded-lg border border-dashed hover:shadow  border-grey-200 cursor-pointer flex flex-col justify-center items-center text-grey-200">
             <p className="text-lg text-center font-semibold">
               What do you want to work on today?
             </p>

@@ -17,7 +17,7 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
     <div className="bg-grey-100 relative cursor-pointer">
       {del ? (
         <div className="z-50 fixed top-0 left-0 w-screen h-screen bg-[#00000088] flex items-start justify-center shadow-2xl border">
-          <div className="w-full z-40 sm:w-40 pb-4 mt-40 mx-5 bg-background rounded-xl ">
+          <div className="w-full z-40 sm:w-80 pb-4 mt-40 mx-5 bg-background rounded-xl ">
             <div
               className="p-3 float-right mx-2 my-2 rounded-md cursor-pointer"
               onClick={() => {
@@ -53,7 +53,7 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
                 }}
                 className="text-left text-red-600 w-full py-3 px-4 hover:bg-red-50 border border-1 border-grey-100"
               >
-                Confirm delete
+                🔥 Confirm delete
               </button>
             )}
           </div>
@@ -84,83 +84,115 @@ function ProjectCard({ tasks, item, profile_img, handleDeleteProject }) {
           className="fill-slate-600"
         />
       </svg>
+      {item?.disable ? (
+        <div className="opacity-80 project-ongoing bg-white border  border-grey-100 hover:border-outline hover:shadow hover:shadow-outline w-fill p-4 rounded-lg cursor-pointer">
+          <p className="project-title text-xl md:text-lg font-semibold hover:text-brand ">
+            Loading...
+          </p>
 
-      {checkPercentage() === 100 ? (
-        <Link to={`/${item.id}`}>
-          <div className=" project-done bg-white border  border-grey-100 hover:border-done-outline hover:shadow hover:shadow-done-outline w-fill p-4 rounded-lg cursor-pointer">
-            <p className="project-title text-xl md:text-lg font-semibold hover:text-done ">
-              {item.fields.projectTitle}
-            </p>
-
-            <div className="flex items-center justify-between mt-3">
-              <p className="text-sm text-slate-500">{item.fields.date}</p>
-              <img
-                className="object-cover h-6 w-6 rounded-full"
-                src={profile_img}
-                alt="something"
-              />
-            </div>
-            <div className="mt-6">
-              <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
-                {checkPercentage() === 100 ? (
-                  <div
-                    className="bg-done h-1 rounded-full"
-                    style={{ width: `${checkPercentage()}%` }}
-                  ></div>
-                ) : (
-                  <div
-                    className="bg-brand h-1 rounded-full"
-                    style={{ width: `${checkPercentage()}%` }}
-                  ></div>
-                )}
-              </div>
-              <p className="text-xs mt-1 text-slate-500">
-                Task done{" "}
-                <span className="text-slate-500">
-                  {doneTask} / {allTask}
-                </span>
-              </p>
-            </div>
+          <div className="flex items-center justify-between mt-3">
+            <p className="text-sm text-slate-500">{item.fields.date}</p>
+            <img
+              className="object-cover h-6 w-6 rounded-full"
+              src={profile_img}
+              alt="something"
+            />
           </div>
-        </Link>
+          <div className="mt-6">
+            <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
+              <div
+                className="bg-brand h-1 rounded-full"
+                style={{ width: `0}%` }}
+              ></div>
+            </div>
+            <p className="text-xs mt-1 text-slate-500">
+              Task done{" "}
+              <span className="text-slate-500">
+                {doneTask} / {allTask}
+              </span>
+            </p>
+          </div>
+        </div>
       ) : (
-        <Link to={`/${item.id}`}>
-          <div className="project-ongoing bg-white border  border-grey-100 hover:border-outline hover:shadow hover:shadow-outline w-fill p-4 rounded-lg cursor-pointer">
-            <p className="project-title text-xl md:text-lg font-semibold hover:text-brand ">
-              {item.fields.projectTitle}
-            </p>
+        <>
+          {checkPercentage() === 100 ? (
+            <Link to={`/${item.id}`}>
+              <div className=" project-done bg-white border  border-grey-100 hover:border-done-outline hover:shadow hover:shadow-done-outline w-fill p-4 rounded-lg cursor-pointer">
+                <p className="project-title text-xl md:text-lg font-semibold hover:text-done ">
+                  {item.fields.projectTitle}
+                </p>
 
-            <div className="flex items-center justify-between mt-3">
-              <p className="text-sm text-slate-500">{item.fields.date}</p>
-              <img
-                className="object-cover h-6 w-6 rounded-full"
-                src={profile_img}
-                alt="something"
-              />
-            </div>
-            <div className="mt-6">
-              <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
-                {checkPercentage() === 100 ? (
-                  <div
-                    className="bg-done h-1 rounded-full"
-                    style={{ width: `${checkPercentage()}%` }}
-                  ></div>
-                ) : (
-                  <div
-                    className="bg-brand h-1 rounded-full"
-                    style={{ width: `${checkPercentage()}%` }}
-                  ></div>
-                )}
+                <div className="flex items-center justify-between mt-3">
+                  <p className="text-sm text-slate-500">{item.fields.date}</p>
+                  <img
+                    className="object-cover h-6 w-6 rounded-full"
+                    src={profile_img}
+                    alt="something"
+                  />
+                </div>
+                <div className="mt-6">
+                  <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
+                    {checkPercentage() === 100 ? (
+                      <div
+                        className="bg-done h-1 rounded-full"
+                        style={{ width: `${checkPercentage()}%` }}
+                      ></div>
+                    ) : (
+                      <div
+                        className="bg-brand h-1 rounded-full"
+                        style={{ width: `${checkPercentage()}%` }}
+                      ></div>
+                    )}
+                  </div>
+                  <p className="text-xs mt-1 text-slate-500">
+                    Task done{" "}
+                    <span className="text-slate-500">
+                      {doneTask} / {allTask}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <p className="text-xs mt-1 text-slate-500">
-                Task done{" "}
-                <span className="text-slate-500">
-                  {doneTask} / {allTask}
-                </span>
-              </p>
-            </div>
-          </div>
-        </Link>
+            </Link>
+          ) : (
+            <Link to={`/${item.id}`}>
+              <div className="project-ongoing bg-white border  border-grey-100 hover:border-outline hover:shadow hover:shadow-outline w-fill p-4 rounded-lg cursor-pointer">
+                <p className="project-title text-xl md:text-lg font-semibold hover:text-brand ">
+                  {item.fields.projectTitle}
+                </p>
+
+                <div className="flex items-center justify-between mt-3">
+                  <p className="text-sm text-slate-500">{item.fields.date}</p>
+                  <img
+                    className="object-cover h-6 w-6 rounded-full"
+                    src={profile_img}
+                    alt="something"
+                  />
+                </div>
+                <div className="mt-6">
+                  <div className="w-full bg-grey-100 rounded-full h-1 dark:bg-slate-200">
+                    {checkPercentage() === 100 ? (
+                      <div
+                        className="bg-done h-1 rounded-full"
+                        style={{ width: `${checkPercentage()}%` }}
+                      ></div>
+                    ) : (
+                      <div
+                        className="bg-brand h-1 rounded-full"
+                        style={{ width: `${checkPercentage()}%` }}
+                      ></div>
+                    )}
+                  </div>
+                  <p className="text-xs mt-1 text-slate-500">
+                    Task done{" "}
+                    <span className="text-slate-500">
+                      {doneTask} / {allTask}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </Link>
+          )}
+        </>
       )}
     </div>
   );

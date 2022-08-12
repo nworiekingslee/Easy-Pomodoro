@@ -3,11 +3,11 @@ import HomeLoader from "../components/Loader screen/HomeLoader";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 const AddNewProject = (props) => {
-  const [newProject, setNewProject] = useState("");
+  const [newProjectTitle, setNewProjectTitle] = useState("");
   const { user } = useAuth0();
 
   const handleChange = ({ target }) => {
-    setNewProject(target.value);
+    setNewProjectTitle(target.value);
   };
 
   const handleCreateProject = () => {
@@ -20,12 +20,12 @@ const AddNewProject = (props) => {
       "-" +
       today.getDate();
 
-    props.history.goBack();
     props.handleCreateProject({
-      projectTitle: newProject,
+      projectTitle: newProjectTitle,
       date: dateNow,
       userId: user.sub,
     });
+    props.history.goBack();
   };
 
   return (
