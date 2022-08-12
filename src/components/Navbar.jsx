@@ -23,6 +23,10 @@ const Navbar = ({ projects, updateUserProjects }) => {
     );
   };
 
+  useState(() => {
+    setUserProjects(projects);
+  }, [projects]);
+
   return (
     <div className="sticky top-0 bg-red-100 z-50">
       <div className="flex justify-between items-center p-4 bg-background">
@@ -94,7 +98,7 @@ const Navbar = ({ projects, updateUserProjects }) => {
       </div>
       {menu ? (
         <div className="fixed top-0 left-0 w-screen h-screen bg-[#00000088] flex items-start justify-center shadow-2xl border">
-          <div className="w-full z-40 sm:w-40 pb-4 mt-40 mx-5 bg-background rounded-xl ">
+          <div className="w-full z-40 sm:w-80 pb-4 mt-40 mx-5 bg-background rounded-xl ">
             <div
               className="p-3 float-right mx-2 my-2 rounded-md cursor-pointer"
               onClick={() => {

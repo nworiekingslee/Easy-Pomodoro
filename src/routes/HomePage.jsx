@@ -13,6 +13,7 @@ const HomePage = ({
   handleCreateProject,
   handleDeleteProject,
   handleUpdateTask,
+  updateProjects,
 }) => {
   return (
     <>
@@ -81,6 +82,7 @@ const HomePage = ({
                 projects={projects}
                 tasks={tasks}
                 handleDeleteProject={handleDeleteProject}
+                updateProjects={updateProjects}
               />
             )}
           />
